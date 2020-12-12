@@ -4,11 +4,11 @@ from bs4 import BeautifulSoup
 
 
 def mechanize_method(username, password):
-
+	
     br = mechanize.Browser()
 
 
-    # Browser options
+	# Browser options
     br.set_handle_equiv(True)
     br.set_handle_gzip(True)
     br.set_handle_redirect(True)
@@ -30,7 +30,6 @@ def mechanize_method(username, password):
 
     response = br.open("https://homeaccess.katyisd.org/HomeAccess/Content/Student/Assignments.aspx")
     return BeautifulSoup(response.read(), "lxml") 
-
     
 
 #------------------------------------------
