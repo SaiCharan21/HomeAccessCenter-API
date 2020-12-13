@@ -34,15 +34,15 @@ def get_grid(element, name):
     results = re.findall('(?s)(?<=\<td)(.*?)(?=\<\/td\>)', str(element))
 
 
-    date_due = results[0]
-    date_assigned = results[1]
+    date_due = re.findall('\d{2}\/\d{2}\/\d{4}', results[0])[0]
+    date_assigned = re.findall('\d{2}\/\d{2}\/\d{4}', results[1])[0]
     
     various_things = list(filter(None, results[2].split("\n")))            
-    title_of_assignment = str(re.findall('(?<=Classwork\: ).*', str(various_things[2])))
-    type_of_grade = re.findall('(?<=Category\: ).*', str(various_things[3]))
-    due_date = re.findall('(?<=Due Date\: ).*', str(various_things[4]))
-    max_points = re.findall('(?<=Max Points\: ).*', str(various_things[5]))
-    can_be_dropped = re.findall('(?<=Can Be Dropped\: ).*', str(various_things[6])) #dunno what this does, but kept it for completions sake
+    title_of_assignment = str(re.findall('(?<=Classwork\: ).*', str(various_things[2]))[0])
+    type_of_grade = re.findall('(?<=Category\: ).*', str(various_things[3]))[0]
+    due_date = re.findall('(?<=Due Date\: ).*', str(various_things[4]))[0]
+    max_points = re.findall('(?<=Max Points\: ).*', str(various_things[5]))[0]
+    can_be_dropped = re.findall('(?<=Can Be Dropped\: ).*', str(various_things[6]))[0] #dunno what this does, but kept it for completions sake
     
     score = get_number(results[4]) #actual grade
     total_points = get_number(results[5])
